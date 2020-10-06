@@ -11,25 +11,40 @@ package cse360assignment02;
 
 public class AddingMachine {
   private int total;
+  private StringBuffer myFormula = new StringBuffer("0");
   
   public AddingMachine () {
-    total = 0;  // not needed - included for clarity
+    total = 0;
   }
   
   public int getTotal () {
-    return 0;
+    return total;
   }
   
-  public void add (int value) {
+  public void add (int value) {     // adds value to total
+      total += value;
+      myFormula.append(" + " + value);
   }
 
-  public void subtract (int value) {
+  public void subtract (int value) {        // subtracts value from total
+      total -= value;
+      myFormula.append(" - " + value);
   }
 
-  public String toString () {
-    return "";
+  public String toString () {       // returns string of operations performed
+    return myFormula.toString();
   }
 
-  public void clear() {
+  public void clear() {     // clears operation memory
+      System.gc();
+  }
+
+  public static void main(String[] args){       // main() to test functions using professor's inputs
+      AddingMachine tester = new AddingMachine();
+      tester.add(4);
+      tester.subtract(2);
+      tester.add(5);
+      System.out.println(tester.toString());
+      System.out.println("Total: " + tester.getTotal());
   }
 }
